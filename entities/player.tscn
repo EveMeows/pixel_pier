@@ -4,14 +4,25 @@
 [ext_resource type="Texture2D" uid="uid://6hn8cp07e1ko" path="res://assets/lilman.svg" id="1_merdl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b0kkn"]
-radius = 65.6201
+radius = 31.7805
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("buffer", "coyoteTimer")]
 script = ExtResource("1_b0kkn")
+buffer = NodePath("JumpBuffer")
+coyoteTimer = NodePath("CoyoteTime")
 metadata/_edit_group_ = true
 
 [node name="sprite" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_merdl")
 
 [node name="collider" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_b0kkn")
+
+[node name="JumpBuffer" type="RayCast2D" parent="."]
+target_position = Vector2(0, 80)
+collision_mask = 2
+
+[node name="CoyoteTime" type="Timer" parent="."]
+
+[connection signal="timeout" from="CoyoteTime" to="." method="CoyoteTimeout"]
