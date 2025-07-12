@@ -1,8 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://du7akpjsbtfqr"]
+[gd_scene load_steps=6 format=3 uid="uid://du7akpjsbtfqr"]
 
 [ext_resource type="PackedScene" uid="uid://gnis6d7kr272" path="res://entities/player.tscn" id="1_uwrxv"]
+[ext_resource type="Script" uid="uid://dntwbojwrc604" path="res://scripts/entities/Player.cs" id="2_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://c22w78mfmlvnb" path="res://entities/water.tscn" id="2_yqjtg"]
+[ext_resource type="Texture2D" uid="uid://6hn8cp07e1ko" path="res://assets/icon.svg" id="3_lnu2h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lbhrr"]
+size = Vector2(306, 362)
 
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(281, 133)
+position = Vector2(606, 209)
+collision_mask = 2
+script = ExtResource("2_lbhrr")
+
+[node name="Water" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(-113, 339)
+
+[node name="Water2" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(758, 344)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(532, 391)
+collision_layer = 2
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(87.5, 100.5)
+scale = Vector2(2.36719, 3.05469)
+texture = ExtResource("3_lnu2h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(90, 89)
+shape = SubResource("RectangleShape2D_lbhrr")

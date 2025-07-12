@@ -15,6 +15,10 @@ run/main_scene="uid://du7akpjsbtfqr"
 config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 config/icon="res://assets/icon.svg"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
 project/assembly_name="PixelPier"

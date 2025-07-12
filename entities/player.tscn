@@ -1,13 +1,29 @@
 [gd_scene load_steps=4 format=3 uid="uid://gnis6d7kr272"]
 
-[ext_resource type="Script" uid="uid://bmu2kt3gvimc8" path="res://scripts/entities/player.cs" id="1_b0kkn"]
 [ext_resource type="Texture2D" uid="uid://6hn8cp07e1ko" path="res://assets/icon.svg" id="1_merdl"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_merdl"]
+script/source = "using Godot;
+using System;
+
+public partial class Player : CharacterBody2D {
+	public override void _PhysicsProcess(double delta) {
+		Vector2 velocity = Velocity;
+		if (!IsOnFloor()) {
+			velocity.Y += 980 * (float)delta;
+		}
+		GD.Print(\"daadsaadsadsadsdsa\");
+		Velocity = velocity;
+		MoveAndSlide();
+	}
+}
+"
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b0kkn"]
 radius = 65.6201
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_b0kkn")
+script = SubResource("CSharpScript_merdl")
 metadata/_edit_group_ = true
 
 [node name="sprite" type="Sprite2D" parent="."]
