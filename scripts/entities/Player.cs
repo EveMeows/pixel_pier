@@ -2,8 +2,12 @@ using Godot;
 using System;
 
 public partial class Player : CharacterBody2D {
-    #region Fields
-    [Export] private RayCast2D buffer;
+	#region Fields
+	[Export] private Node2D rod;
+	[Export] private Marker2D rodRight;
+	[Export] private Marker2D rodLeft;
+
+	[Export] private RayCast2D buffer;
 	private bool jumpBuffered = false;
 	[Export] private float JumpForce = -500;
 
@@ -46,6 +50,10 @@ public partial class Player : CharacterBody2D {
         float direction = Input.GetAxis("left", "right");
 		if (direction != 0) {
 			velocity.X = Mathf.MoveToward(velocity.X, direction * MaxSpeed, Acceleration);
+
+			// Node2D does not have a FlipH field :(
+			rod.Position = direction < 0 ? rodLeft.Position : rodRight.Position;
+			rod.Scale = new Vector2(direction, 1);
 		} else {
 			velocity.X = Mathf.MoveToward(velocity.X, 0, Acceleration);
 		}

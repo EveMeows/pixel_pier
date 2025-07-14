@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3m3skoxlmrf"]
+
+[ext_resource type="Texture2D" uid="uid://6hn8cp07e1ko" path="res://assets/lilman.svg" id="1_1exei"]
+
+[node name="Rod" type="Node2D"]
+metadata/_edit_group_ = true
+
+[node name="Sprite" type="Sprite2D" parent="."]
+rotation = 0.619592
+scale = Vector2(0.140625, 0.554688)
+texture = ExtResource("1_1exei")
+
+[node name="End" type="Marker2D" parent="."]
+position = Vector2(18.055, -25.195)
