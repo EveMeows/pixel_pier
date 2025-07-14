@@ -15,4 +15,13 @@ public partial class Water : Area2D {
         collider.Shape = @new;
         collider.Position = rect.Position;
     }
+
+	private void OnBodyEntered(Node2D body) {
+		if (body is Player player) {
+			if (player.LastKnownSafePosition is not null) {
+				player.Position = player.LastKnownSafePosition.Value;
+			}
+		}
+	}
 }
+	

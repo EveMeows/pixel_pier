@@ -28,3 +28,5 @@ texture = ExtResource("3_f1640")
 [node name="Collider" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("RectangleShape2D_l1ifp")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

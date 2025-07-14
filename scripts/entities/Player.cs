@@ -5,7 +5,7 @@ public partial class Player : CharacterBody2D {
     #region Fields
     [Export] private RayCast2D buffer;
 	private bool jumpBuffered = false;
-	private readonly float JumpForce = -500;
+	[Export] private float JumpForce = -500;
 
 	private bool jumping = false;
 
@@ -16,11 +16,15 @@ public partial class Player : CharacterBody2D {
 
 	private readonly float Gravity = 980;
 
-	private readonly float MaxSpeed = 200;
-	private readonly float Acceleration = 15.75f;
-    #endregion
+	[Export] private float MaxSpeed = 200;
+	[Export] private float Acceleration = 15.75f;
 
-    public override void _Ready() {
+	[Export] private RayCast2D safePositionLeft;
+	[Export] private RayCast2D safePositionRight;
+	public Vector2? LastKnownSafePosition { get; private set; } = null;
+	#endregion
+
+	public override void _Ready() {
 		coyoteTimer.WaitTime = CoyoteTime;
 	}
 
@@ -79,4 +83,10 @@ public partial class Player : CharacterBody2D {
 	}
 
 	private void CoyoteTimeout() => coyote = false;
+
+	private void CheckSafePosition() {
+		if (safePositionLeft.IsColliding() && safePositionRight.IsColliding()) {
+			LastKnownSafePosition = Position;
+		}
+	}
 }

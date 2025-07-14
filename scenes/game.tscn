@@ -10,8 +10,9 @@ size = Vector2(306, 362)
 [node name="Game" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(619, 100)
+position = Vector2(637, 264)
 collision_mask = 2
+MaxSpeed = 300.0
 
 [node name="TestWater_Left" parent="." instance=ExtResource("2_yqjtg")]
 position = Vector2(182, 490)
